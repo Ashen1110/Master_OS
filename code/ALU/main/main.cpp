@@ -81,7 +81,7 @@ void close_all(int sig){
 	clock_gettime (CLOCK_MONOTONIC, &end_time) ;
 	printf("\n");
 	sleep(1);
-	print_all(-1);
+	print_all();
 	fclose(fp);
 	printf("print finish.\n");
 	exit(0);

@@ -1,6 +1,6 @@
 #include "main/main.cpp"
 
-void spin_init(int rout_num){
+void spin_init(){
 
 }
 void spin_lock(){
