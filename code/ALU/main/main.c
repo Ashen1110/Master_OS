@@ -1,7 +1,7 @@
 #include "public.h"
 
-double time_diff(timespec t1, timespec t2){
-	timespec diff;
+double time_diff(struct timespec t1, struct timespec t2){
+	struct timespec diff;
 	if(t2.tv_nsec - t1.tv_nsec < 0){
 		diff.tv_sec = t2.tv_sec - t1.tv_sec -1;
 		diff.tv_nsec = t2.tv_nsec + 1000000000 - t1.tv_nsec;
@@ -34,12 +34,12 @@ void *dothread(void *arg){
 	rnd *= nCS_size;
 
 	double dif_naro;
-    timespec start, current, rs_start;
+    struct timespec start, current, rs_start;
 
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	clock_gettime(CLOCK_MONOTONIC, &current);
     // critical section
-    while(running_flag){
+    while(running_flag=1){
 		if(time_diff(start, current)> run_seconds*1000000000.0) break;
 		//clock_gettime(CLOCK_MONOTONIC, &lock_begin);
 		spin_lock() ; 
@@ -140,7 +140,8 @@ int main(int argc, char* argv[]){
     note_message(thread_num, nCS_size, run_seconds);
     file_init();
 
-    user=new int[user_num]{0};
+    user= malloc(user_num * sizeof(int));
+	//new int[user_num]{0};
 	for(int i=0;i<user_num;i++){
 			user[i]=0;
 	}
@@ -165,7 +166,7 @@ int main(int argc, char* argv[]){
 	for (int i=0; i<thread_num; i++) pthread_join(thread1[i], NULL);
 
 	clock_gettime(CLOCK_MONOTONIC, &end_time);
-	running_flag=false;
+	running_flag=0;
 	
 	sleep(2);
 	if(print_all() >= 0) fprintf(fp,"correct.\n");

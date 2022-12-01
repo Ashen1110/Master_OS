@@ -1,11 +1,12 @@
-#include <iostream>
-#include <thread>
-#include <atomic>
+#define _GNU_SOURCE
+#include <stdlib.h>
+#include <stdio.h>
+#include <threads.h>
+#include <stdatomic.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sched.h>
 #include <signal.h>
-#include <stdlib.h>
 #include <time.h> 
 #include <pthread.h>
 #include <string.h>
@@ -20,28 +21,35 @@
 #define run_seconds 60
 #define unlikely(x) __builtin_expect(!!(x), 0)
 
-using namespace std;
-
 //parameters
 int thread_num, nCS_size;
 
-atomic_bool InUse = ATOMIC_VAR_INIT(false); //anythread in CS or not
+atomic_int InUse = ATOMIC_VAR_INIT(0); //anythread in CS or not
 
 int* user;
 int thread_cs_counter[Num_core];
 long long int rounds = 0; // record the number of locks
 //int run_core[Num_core];
 
-timespec begin_time, end_time;
+struct timespec begin_time, end_time;
 FILE * fp=NULL;
 
-bool running_flag=true;
+int running_flag=1;
+
+
+struct mcs_spinlock{
+    struct mcs_spinlock *next;
+    atomic_int locked;
+};
 
 void spin_lock();
+void mcs_spin_lock(struct mcs_spinlock *node);
 void spin_unlock();
+void mcs_spin_unlock(struct mcs_spinlock *node);
 void spin_init();
 void note_message(int thread_num, int nCS_size, int run_second);
 
-thread_local bool flag=false;
-timespec lock_begin, lock_end;
-timespec unlock_begin, unlock_end;
+thread_local int flag=0;
+struct timespec lock_begin, lock_end;
+struct timespec unlock_begin, unlock_end;
+

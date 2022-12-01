@@ -1,4 +1,4 @@
-#include "main/main.cpp"
+#include "main/main.c"
 
 atomic_llong global_ticket={0};
 atomic_llong service_ticket={0};
@@ -11,7 +11,7 @@ void spin_init(){
 void spin_lock(){
 	long long int local_ticket;
     local_ticket = atomic_fetch_add_explicit(&global_ticket, 1, memory_order_relaxed);
-    while(local_ticket != service_ticket) std::this_thread::yield(); 
+    while(local_ticket != service_ticket) asm("pause"); 
 }
 
 void spin_unlock(){

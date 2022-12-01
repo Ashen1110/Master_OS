@@ -1,19 +1,29 @@
-#include "main/main.cpp"
-pthread_spinlock_t spin;
+#include "main/main.c"
 
 void spin_init(){
-	pthread_spin_init(&spin, PTHREAD_PROCESS_PRIVATE);
+
 }
 void spin_lock(){
-	pthread_spin_lock(&spin);
+	while(1){
+		while(InUse!=0){
+			asm("pause");
+			//std::this_thread::yield();
+		}
+		if(unlikely(InUse==0)){
+            if(atomic_compare_exchange_weak(&InUse, &flag, 1)){
+                return ;
+            }
+        }
+		flag =0;
+	}
 }
 void spin_unlock(){
-	pthread_spin_unlock(&spin);
+	InUse=0;
 }
 void note_message(int thread_num, int nCS_size, int run_second){
     file_init();
 	fprintf(fp,"=======================\n");
-	fprintf(fp,"pthread_spin\n");
+	fprintf(fp,"only inuse\n");
 	fprintf(fp,"threads: %d\n",thread_num);
 	fprintf(fp,"user_num: %d\n",user_num);
 	fprintf(fp,"nCS_size: %d\n",nCS_size);
