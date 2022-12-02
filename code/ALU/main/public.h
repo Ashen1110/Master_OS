@@ -18,7 +18,7 @@
 #include <sys/wait.h>
 #define Num_core 64
 #define user_num 100
-#define run_seconds 60
+#define run_seconds 10
 #define unlikely(x) __builtin_expect(!!(x), 0)
 
 //parameters

@@ -19,7 +19,6 @@ atomic_int counter = {0};
 int error = 0;
 
 void *dothread(void *arg){
-	struct mcs_spinlock *node = malloc(sizeof(struct mcs_spinlock));
 	int num = atomic_fetch_add_explicit(&counter, 1, memory_order_release);
 	cpu_set_t cpuset;
 	CPU_ZERO(&cpuset);
@@ -36,11 +35,14 @@ void *dothread(void *arg){
 
 	double dif_naro;
     struct timespec start, current, rs_start;
-
+	
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	clock_gettime(CLOCK_MONOTONIC, &current);
     // critical section
-    while(running_flag==1){
+	
+	struct mcs_spinlock* node = malloc(sizeof(struct mcs_spinlock));
+
+    while(running_flag=1){
 		if(time_diff(start, current)> run_seconds*1000000000.0) break;
 		//clock_gettime(CLOCK_MONOTONIC, &lock_begin);
 		mcs_spin_lock(node) ; 
@@ -111,9 +113,9 @@ int print_all(){
 	}else printf("data_flag: %d\n", data_flag);
 
 	
-	// for(int i=0; i<Num_core; i++){
-	// 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
-	// }
+	 for(int i=0; i<Num_core; i++){
+	 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
+	 }
 	
 	
 	write_result( rounds, exec_time);
@@ -143,6 +145,7 @@ int main(int argc, char* argv[]){
     file_init();
 
     user= malloc(user_num * sizeof(int));
+	//new int[user_num]{0};
 	for(int i=0;i<user_num;i++){
 			user[i]=0;
 	}

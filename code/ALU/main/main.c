@@ -109,9 +109,9 @@ int print_all(){
 	}else printf("data_flag: %d\n", data_flag);
 
 	
-	// for(int i=0; i<Num_core; i++){
-	// 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
-	// }
+	 for(int i=0; i<Num_core; i++){
+	 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
+	 }
 	
 	
 	write_result( rounds, exec_time);
