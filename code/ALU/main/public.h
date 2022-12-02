@@ -38,7 +38,7 @@ int running_flag=1;
 
 
 struct mcs_spinlock{
-    struct mcs_spinlock *next;
+    _Atomic (struct mcs_spinlock*) next;
     atomic_int locked;
 };
 

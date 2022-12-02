@@ -19,7 +19,7 @@ atomic_int counter = {0};
 int error = 0;
 
 void *dothread(void *arg){
-	struct mcs_spinlock *node = malloc(sizeof(mcs_spinlock));
+	struct mcs_spinlock *node = malloc(sizeof(struct mcs_spinlock));
 	int num = atomic_fetch_add_explicit(&counter, 1, memory_order_release);
 	cpu_set_t cpuset;
 	CPU_ZERO(&cpuset);
@@ -40,7 +40,7 @@ void *dothread(void *arg){
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	clock_gettime(CLOCK_MONOTONIC, &current);
     // critical section
-    while(running_flag){
+    while(running_flag==1){
 		if(time_diff(start, current)> run_seconds*1000000000.0) break;
 		//clock_gettime(CLOCK_MONOTONIC, &lock_begin);
 		mcs_spin_lock(node) ; 
@@ -142,7 +142,7 @@ int main(int argc, char* argv[]){
     note_message(thread_num, nCS_size, run_seconds);
     file_init();
 
-    user=new int[user_num]{0};
+    user= malloc(user_num * sizeof(int));
 	for(int i=0;i<user_num;i++){
 			user[i]=0;
 	}
@@ -167,7 +167,7 @@ int main(int argc, char* argv[]){
 	for (int i=0; i<thread_num; i++) pthread_join(thread1[i], NULL);
 
 	clock_gettime(CLOCK_MONOTONIC, &end_time);
-	running_flag=false;
+	running_flag=0;
 	
 	sleep(2);
 	if(print_all() >= 0) fprintf(fp,"correct.\n");

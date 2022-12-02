@@ -4,7 +4,7 @@
 struct mcs_spinlock *mcs_node;
 
 void spin_init(){
-    mcs_node = malloc(sizeof(mcs_spinlock));
+    mcs_node = malloc(sizeof(struct mcs_spinlock));
     mcs_node->next = mcs_null;
     mcs_node->locked = 0;
     
@@ -13,7 +13,7 @@ void spin_init(){
 void mcs_spin_lock(struct mcs_spinlock *node){
     
     node->next = mcs_null;
-    struct mcs_spinlock *prev = __atomic_exchange_n(&mcs_node, node, 0);
+    struct mcs_spinlock *prev = __atomic_exchange_n(&(mcs_node), node, 0);
 
     if(prev != mcs_null){
         node->locked = 1;
@@ -27,9 +27,19 @@ void mcs_spin_unlock(struct mcs_spinlock *node){
     struct mcs_spinlock *with_lock = atomic_load_explicit(&(node->next), memory_order_acquire);
     if(with_lock == mcs_null){
          struct mcs_spinlock *prev = node;
-        if(atomic_compare_exchange_weak(&mcs_node, &prev, mcs_null, memory_order_release, memory_order_relaxed)) return ;
+        if(atomic_compare_exchange_weak(&(mcs_node->next), &prev, mcs_null)) return ;
         with_lock = atomic_load_explicit(&(node->next), memory_order_acquire);
         while(with_lock == mcs_null) asm("pause");
     }
-    atomic_store_explicit(&(with_lock->locked), false, memory_order_release);
+    atomic_store_explicit(&(with_lock->locked), 0, memory_order_release);
+}
+
+void note_message(int thread_num, int nCS_size, int run_second){
+    file_init();
+	fprintf(fp,"=======================\n");
+	fprintf(fp,"mcs\n");
+	fprintf(fp,"threads: %d\n",thread_num);
+	fprintf(fp,"user_num: %d\n",user_num);
+	fprintf(fp,"nCS_size: %d\n",nCS_size);
+	fprintf(fp,"run_second: %d\n",run_second);
 }
