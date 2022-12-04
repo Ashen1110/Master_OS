@@ -37,10 +37,10 @@ FILE * fp=NULL;
 int running_flag=1;
 
 
-struct mcs_spinlock{
+typedef struct mcs_spinlock{
     _Atomic (struct mcs_spinlock*) next;
     atomic_int locked;
-};
+}mcs_spinlock;
 
 void spin_lock();
 void mcs_spin_lock(struct mcs_spinlock *node);

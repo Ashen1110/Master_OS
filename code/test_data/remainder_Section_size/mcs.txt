@@ -1,0 +1,81 @@
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 0
+run_second: 10
+count: 8400019	time: 10.020118 s	count/time: 838315.356710 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 1000
+run_second: 10
+count: 7858614	time: 10.004238 s	count/time: 785528.479833 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 2500
+run_second: 10
+count: 7840260	time: 10.028061 s	count/time: 781832.068352 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 5000
+run_second: 10
+count: 7819821	time: 10.017056 s	count/time: 780650.589723 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 10000
+run_second: 10
+count: 7741448	time: 10.004200 s	count/time: 773819.805122 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 20000
+run_second: 10
+count: 7752736	time: 10.012872 s	count/time: 774276.951250 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 40000
+run_second: 10
+count: 7629973	time: 10.018520 s	count/time: 761586.848848 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 80000
+run_second: 10
+count: 7327303	time: 10.018182 s	count/time: 731400.493149 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 120000
+run_second: 10
+count: 5233288	time: 10.012268 s	count/time: 522687.542827 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 160000
+run_second: 10
+count: 3998970	time: 10.004207 s	count/time: 399728.844348 
+correct.
+
