@@ -7,9 +7,9 @@ EXE = $(subst .,,$(SRC))
 all: ${EXE}
 
 %cpp: %.cpp
-	@${C+} ${CFLAGS} $*.cpp -o $*-alu
+	@${C+} ${CFLAGS} $*.cpp -o $*-io
 %c:	%.c
-	@${CC} ${CFLAGS} $*.c -o $*-alu
+	@${CC} ${CFLAGS} $*.c -o $*-io
 
 clean:
-	@rm *-alu
+	@rm *-io

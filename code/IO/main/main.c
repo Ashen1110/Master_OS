@@ -35,17 +35,14 @@ void *dothread(void *arg){
 
 	double dif_naro;
     struct timespec start, current, rs_start;
-	
+
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	clock_gettime(CLOCK_MONOTONIC, &current);
     // critical section
-	
-	struct mcs_spinlock* node = malloc(sizeof(struct mcs_spinlock));
-
     while(running_flag=1){
 		if(time_diff(start, current)> run_seconds*1000000000.0) break;
 		//clock_gettime(CLOCK_MONOTONIC, &lock_begin);
-		mcs_spin_lock(node) ; 
+		spin_lock() ; 
 		//clock_gettime(CLOCK_MONOTONIC, &lock_end);
 		//printf("%d\n", sched_getcpu());
 		
@@ -57,12 +54,13 @@ void *dothread(void *arg){
         }
 		for(int i=0;i<user_num;i++){
             (*(user+i))+=1;
+			fprintf(test_file, "My user_num is %d\n", i);
 		}
 		rounds++;
 		error--;
 		
 		//clock_gettime(CLOCK_MONOTONIC, &unlock_begin);
-		mcs_spin_unlock(node) ; //US
+		spin_unlock() ; //US
 		//clock_gettime(CLOCK_MONOTONIC, &unlock_end);
 
 		//printf("spin lock: %.1f  spin unlock: %.1f\n", (time_diff(lock_begin, lock_end)), (time_diff(unlock_begin, unlock_end)));
@@ -75,7 +73,6 @@ void *dothread(void *arg){
 		}while(dif_naro < rnd);
 		
 	}
-	free(node);
     pthread_exit(NULL);
     return (NULL);
 }
@@ -87,6 +84,7 @@ void close_all(int sig){
 	sleep(1);
 	print_all();
 	fclose(fp);
+	fclose(test_file);
 	printf("print finish.\n");
 	exit(0);
 	printf("impossible\n");
@@ -112,11 +110,11 @@ int print_all(){
 		printf("amazing.");
 	}else printf("data_flag: %d\n", data_flag);
 
-	
+	/*
 	 for(int i=0; i<Num_core; i++){
 	 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
 	 }
-	
+	*/
 	
 	write_result( rounds, exec_time);
 	printf("\n");
@@ -127,6 +125,9 @@ void file_init(){
 	if(fp!=NULL)
 		fclose(fp);
 	fp = fopen("result.txt", "a+");
+
+	if(test_file != NULL) fclose(test_file);
+	test_file = fopen("test_file.txt", "a+");
 }
 
 int main(int argc, char* argv[]){
@@ -153,6 +154,7 @@ int main(int argc, char* argv[]){
 		thread_cs_counter[i] = 0;
 	}
 	fp=NULL;
+	test_file = NULL;
 	file_init();
 
 	int err=0;

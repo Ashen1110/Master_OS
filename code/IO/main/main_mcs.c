@@ -57,6 +57,7 @@ void *dothread(void *arg){
         }
 		for(int i=0;i<user_num;i++){
             (*(user+i))+=1;
+			fprintf(test_file, "My user_num is %d\n", i);
 		}
 		rounds++;
 		error--;
@@ -87,6 +88,7 @@ void close_all(int sig){
 	sleep(1);
 	print_all();
 	fclose(fp);
+	fclose(test_file);
 	printf("print finish.\n");
 	exit(0);
 	printf("impossible\n");
@@ -112,11 +114,11 @@ int print_all(){
 		printf("amazing.");
 	}else printf("data_flag: %d\n", data_flag);
 
-	
+	/*
 	 for(int i=0; i<Num_core; i++){
 	 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
 	 }
-	
+	*/
 	
 	write_result( rounds, exec_time);
 	printf("\n");
@@ -127,6 +129,9 @@ void file_init(){
 	if(fp!=NULL)
 		fclose(fp);
 	fp = fopen("result.txt", "a+");
+
+	if(test_file != NULL) fclose(test_file);
+	test_file = fopen("test_file.txt", "a+");
 }
 
 int main(int argc, char* argv[]){
@@ -153,6 +158,7 @@ int main(int argc, char* argv[]){
 		thread_cs_counter[i] = 0;
 	}
 	fp=NULL;
+	test_file = NULL;
 	file_init();
 
 	int err=0;
