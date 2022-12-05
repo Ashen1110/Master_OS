@@ -9,6 +9,7 @@
 #include <signal.h>
 #include <time.h> 
 #include <pthread.h>
+#include <semaphore.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
