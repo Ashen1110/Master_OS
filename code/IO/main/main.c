@@ -20,6 +20,7 @@ int error = 0;
 
 void *dothread(void *arg){
 	int num = atomic_fetch_add_explicit(&counter, 1, memory_order_release);
+	num%=Num_core;
 	cpu_set_t cpuset;
 	CPU_ZERO(&cpuset);
 	CPU_SET(num, &cpuset);

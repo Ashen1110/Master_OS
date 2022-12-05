@@ -20,6 +20,7 @@ int error = 0;
 
 void *dothread(void *arg){
 	int num = atomic_fetch_add_explicit(&counter, 1, memory_order_release);
+	num %= Num_core;
 	cpu_set_t cpuset;
 	CPU_ZERO(&cpuset);
 	CPU_SET(num, &cpuset);
@@ -112,11 +113,13 @@ int print_all(){
 		printf("amazing.");
 	}else printf("data_flag: %d\n", data_flag);
 
-	
-	 for(int i=0; i<Num_core; i++){
+	/*
+	for(int i=0; i<Num_core; i++){
 	 	printf("thread %d enter CS: %d\n", i, thread_cs_counter[i]);
 	 }
 	
+	*/
+	 
 	
 	write_result( rounds, exec_time);
 	printf("\n");

@@ -17,7 +17,10 @@ void mcs_spin_lock(mcs_spinlock* node){
     if(prev != mcs_null){
         atomic_init(&(node->locked), 1);
         atomic_store_explicit(&(prev->next), node, memory_order_release);
-        while(atomic_load_explicit(&(node->locked), memory_order_acquire)) asm("pause");
+        while(atomic_load_explicit(&(node->locked), memory_order_acquire)) {
+            //asm("pause");
+            thrd_yield();
+        }
 
     }
     
@@ -29,7 +32,10 @@ void mcs_spin_unlock(mcs_spinlock* node){
         mcs_spinlock* prev = node;
         if(atomic_compare_exchange_weak(&(mcs_node->next), &prev, mcs_null)) return ;
         
-        while((with_lock = atomic_load_explicit(&(node->next), memory_order_acquire)) == mcs_null) asm("pause");
+        while((with_lock = atomic_load_explicit(&(node->next), memory_order_acquire)) == mcs_null) {
+            //asm("pause");
+            thrd_yield();
+        }
     }
     atomic_store_explicit(&(with_lock->locked), 0, memory_order_release);
 }

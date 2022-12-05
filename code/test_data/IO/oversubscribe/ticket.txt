@@ -1,0 +1,49 @@
+=======================
+ticket
+threads: 64
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 529198	time: 10.002861 s	count/time: 52904.661892 
+correct.
+=======================
+ticket
+threads: 96
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 397001	time: 10.013183 s	count/time: 39647.831431 
+correct.
+=======================
+ticket
+threads: 128
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 397539	time: 10.015809 s	count/time: 39691.150938 
+correct.
+=======================
+ticket
+threads: 256
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 355535	time: 10.041620 s	count/time: 35406.138832 
+correct.
+=======================
+ticket
+threads: 384
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 328314	time: 10.069393 s	count/time: 32605.144124 
+correct.
+=======================
+ticket
+threads: 512
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 315216	time: 10.137537 s	count/time: 31093.943549 
+correct.
+

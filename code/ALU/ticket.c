@@ -11,7 +11,10 @@ void spin_init(){
 void spin_lock(){
 	long long int local_ticket;
     local_ticket = atomic_fetch_add_explicit(&global_ticket, 1, memory_order_relaxed);
-    while(local_ticket != service_ticket) asm("pause"); 
+    while(local_ticket != service_ticket) {
+		//asm("pause");
+		thrd_yield();
+	} 
 }
 
 void spin_unlock(){

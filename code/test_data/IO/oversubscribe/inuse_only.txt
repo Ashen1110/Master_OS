@@ -1,0 +1,49 @@
+=======================
+only inuse
+threads: 64
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 682044	time: 10.003593 s	count/time: 68179.901809 
+correct.
+=======================
+only inuse
+threads: 96
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 451872	time: 10.010516 s	count/time: 45139.731027 
+correct.
+=======================
+only inuse
+threads: 128
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 458421	time: 10.016274 s	count/time: 45767.618976 
+correct.
+=======================
+only inuse
+threads: 256
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 455598	time: 10.046363 s	count/time: 45349.546063 
+correct.
+=======================
+only inuse
+threads: 384
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 454808	time: 10.080052 s	count/time: 45119.607825 
+correct.
+=======================
+only inuse
+threads: 512
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 452538	time: 10.140401 s	count/time: 44627.230163 
+correct.
+

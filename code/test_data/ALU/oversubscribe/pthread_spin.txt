@@ -1,0 +1,49 @@
+=======================
+pthread_spin
+threads: 64
+user_num: 100
+nCS_size: 0
+run_second: 10
+count: 5567075	time: 10.004592 s	count/time: 556451.968464 
+correct.
+=======================
+pthread_spin
+threads: 96
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 3229647	time: 10.053262 s	count/time: 321253.630049 
+correct.
+=======================
+pthread_spin
+threads: 128
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 2546180	time: 10.063018 s	count/time: 253023.498164 
+correct.
+=======================
+pthread_spin
+threads: 256
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 1239438	time: 10.094015 s	count/time: 122789.400303 
+correct.
+=======================
+pthread_spin
+threads: 384
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 901510	time: 10.111341 s	count/time: 89158.304713 
+correct.
+=======================
+pthread_spin
+threads: 512
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 679442	time: 10.139932 s	count/time: 67006.564036 
+correct.
+

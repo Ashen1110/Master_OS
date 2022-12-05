@@ -6,8 +6,8 @@ void spin_init(){
 void spin_lock(){
 	while(1){
 		while(InUse!=0){
-			asm("pause");
-			//std::this_thread::yield();
+			//asm("pause");
+			thrd_yield();
 		}
 		if(unlikely(InUse==0)){
             if(atomic_compare_exchange_weak(&InUse, &flag, 1)){
