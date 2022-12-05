@@ -1,0 +1,49 @@
+=======================
+pthread_mutex
+threads: 64
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 542229	time: 10.004945 s	count/time: 54196.099406 
+correct.
+=======================
+pthread_mutex
+threads: 96
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 669106	time: 10.009776 s	count/time: 66845.252789 
+correct.
+=======================
+pthread_mutex
+threads: 128
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 707854	time: 10.012004 s	count/time: 70700.529804 
+correct.
+=======================
+pthread_mutex
+threads: 256
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 708297	time: 10.022517 s	count/time: 70670.573557 
+correct.
+=======================
+pthread_mutex
+threads: 384
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 682113	time: 10.034569 s	count/time: 67976.310544 
+correct.
+=======================
+pthread_mutex
+threads: 512
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 699939	time: 10.041634 s	count/time: 69703.694780 
+correct.
+

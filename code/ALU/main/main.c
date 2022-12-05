@@ -47,7 +47,7 @@ void *dothread(void *arg){
 		//clock_gettime(CLOCK_MONOTONIC, &lock_end);
 		//printf("%d\n", sched_getcpu());
 		
-		//thread_cs_counter[num]++;
+		thread_cs_counter[num]++;
 		
 		error++;
 		if(error!=1){
