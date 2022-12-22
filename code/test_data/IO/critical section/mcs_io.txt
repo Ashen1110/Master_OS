@@ -1,0 +1,41 @@
+=======================
+mcs
+threads: 64
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 397650	time: 10.005254 s	count/time: 39744.117991 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 1000
+nCS_size: 2000
+run_second: 10
+count: 52672	time: 10.013055 s	count/time: 5260.332447 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 10000
+nCS_size: 2000
+run_second: 10
+count: 5254	time: 10.096655 s	count/time: 520.370356 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 100000
+nCS_size: 2000
+run_second: 10
+count: 576	time: 10.946582 s	count/time: 52.619164 
+correct.
+=======================
+mcs
+threads: 64
+user_num: 1000000
+nCS_size: 2000
+run_second: 10
+count: 114	time: 19.348661 s	count/time: 5.891881 
+correct.
+

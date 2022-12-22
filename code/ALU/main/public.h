@@ -18,12 +18,12 @@
 #include <stdint.h>
 #include <sys/wait.h>
 #define Num_core 64
-#define user_num 100
+//#define user_num 100
 #define run_seconds 10
 #define unlikely(x) __builtin_expect(!!(x), 0)
 
 //parameters
-int thread_num, nCS_size;
+int thread_num, nCS_size, user_num;
 
 atomic_int InUse = ATOMIC_VAR_INIT(0); //anythread in CS or not
 

@@ -137,13 +137,15 @@ void file_init(){
 
 int main(int argc, char* argv[]){
     if(argc<2){
-		printf("usage: <number of threads> <nCS_size>\n");
+		printf("usage: <number of threads> <nCS_size> <user_num (100)>\n");
 		return 0;
 	}
 	signal(SIGINT,close_all);
     //parameters
     int thread_num=atoi(argv[1]);
 	nCS_size=atoi(argv[2]);
+	user_num = 100;
+	if(argc>3) user_num = atoi(argv[3]);
 	
 	double run_naro = run_seconds*1000000000.0;
     // output messages

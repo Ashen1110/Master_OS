@@ -1,0 +1,41 @@
+=======================
+binary_semaphore
+threads: 64
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 505734	time: 10.004888 s	count/time: 50548.690304 
+correct.
+=======================
+binary_semaphore
+threads: 64
+user_num: 1000
+nCS_size: 2000
+run_second: 10
+count: 89206	time: 10.016361 s	count/time: 8906.028563 
+correct.
+=======================
+binary_semaphore
+threads: 64
+user_num: 10000
+nCS_size: 2000
+run_second: 10
+count: 13914	time: 10.100072 s	count/time: 1377.613969 
+correct.
+=======================
+binary_semaphore
+threads: 64
+user_num: 100000
+nCS_size: 2000
+run_second: 10
+count: 1479	time: 10.827778 s	count/time: 136.593123 
+correct.
+=======================
+binary_semaphore
+threads: 64
+user_num: 1000000
+nCS_size: 2000
+run_second: 10
+count: 201	time: 15.133095 s	count/time: 13.282148 
+correct.
+

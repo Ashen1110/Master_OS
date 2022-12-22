@@ -1,0 +1,41 @@
+=======================
+ticket
+threads: 64
+user_num: 100
+nCS_size: 2000
+run_second: 10
+count: 401364	time: 10.007749 s	count/time: 40105.323372 
+correct.
+=======================
+ticket
+threads: 64
+user_num: 1000
+nCS_size: 2000
+run_second: 10
+count: 53138	time: 10.010618 s	count/time: 5308.163623 
+correct.
+=======================
+ticket
+threads: 64
+user_num: 10000
+nCS_size: 2000
+run_second: 10
+count: 5298	time: 10.098624 s	count/time: 524.625926 
+correct.
+=======================
+ticket
+threads: 64
+user_num: 100000
+nCS_size: 2000
+run_second: 10
+count: 575	time: 10.958221 s	count/time: 52.472022 
+correct.
+=======================
+ticket
+threads: 64
+user_num: 1000000
+nCS_size: 2000
+run_second: 10
+count: 113	time: 19.441906 s	count/time: 5.812187 
+correct.
+
