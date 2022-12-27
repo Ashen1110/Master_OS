@@ -27,7 +27,7 @@ int thread_num, nCS_size, user_num;
 
 atomic_int InUse = ATOMIC_VAR_INIT(0); //anythread in CS or not
 
-int* user;
+long long int* user;
 int thread_cs_counter[Num_core];
 long long int rounds = 0; // record the number of locks
 //int run_core[Num_core];
