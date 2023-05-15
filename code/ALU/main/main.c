@@ -144,7 +144,7 @@ int main(int argc, char* argv[]){
     note_message(thread_num, nCS_size, run_seconds);
     file_init();
 
-    user= malloc(user_num * sizeof(int));
+    user= malloc(user_num * sizeof(long long int));
 	//new int[user_num]{0};
 	for(int i=0;i<user_num;i++){
 			user[i]=0;
